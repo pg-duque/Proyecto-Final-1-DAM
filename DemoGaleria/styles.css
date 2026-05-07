@@ -1,0 +1,56 @@
+:root {
+    --color-textos: #fdf0d5;
+    --color-primario: rgba(120, 0, 0, 0.88);
+    --sombra-texto: 4px 4px 8px black;
+}
+
+@font-face {
+    font-family: 'PirataOne-Regular';
+    src: url('../assets/fonts/PirataOne-Regular.ttf') format('truetype');
+}
+
+header, .container-formulario {
+    font-family: 'PirataOne-Regular', serif;
+    background-color: var(--color-primario);
+    text-shadow: var(--sombra-texto);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #5e0000;
+    margin-bottom: 30px;
+}
+
+.card-dnd {
+    background-color: #fdf0d5; 
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 3px solid #5e0000;
+    border-radius: 10px;
+}
+
+.card-dnd:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.card-dnd img {
+    height: 200px;
+    object-fit: contain; 
+    background-color: rgba(0,0,0,0.05);
+    padding: 10px;
+}
+
+.card-title {
+    font-family: 'PirataOne-Regular', serif;
+    font-size: 1.8rem;
+    color: #780000;
+}
+
+.btn-primary { background-color: #780000; border-color: #5e0000; }
+.btn-primary:hover { background-color: #a00000; }
+
+
+.form-label {
+    font-size: 1.4rem;
+    text-shadow: var(--sombra-texto);
+}
