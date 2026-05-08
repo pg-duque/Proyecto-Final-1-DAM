@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'PirataOne-Regular';
-    src: url('../assets/fonts/PirataOne-Regular.ttf') format('truetype');
+    src: url('assets/fonts/PirataOne-Regular.ttf') format('truetype');
 }
 
 header, .container-formulario {
