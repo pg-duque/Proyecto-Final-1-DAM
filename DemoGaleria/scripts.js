@@ -52,8 +52,6 @@ async function insertarClase() {
 
   if(!fuentePoderId) return alert("Debes seleccionar una fuente de poder")
 
-  const nuevaClase = { nombre, descripcion };
-
   const nuevaClase = {
     nombre,
     descripcion,
