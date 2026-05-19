@@ -1,6 +1,8 @@
 const API_URL = "http://localhost:8080/clases";
 const API_FUENTES = "http://localhost:8080/fuentes";
 
+let listaClasesLocales = []; 
+
 async function cargarFuentes() {
   const respuesta = await fetch(API_FUENTES);
   const fuentes = await respuesta.json();
@@ -14,30 +16,27 @@ async function cargarFuentes() {
   });
 }
 
-
 async function datosClases() {
-
   const respuesta = await fetch(API_URL);
-  const clases = await respuesta.json();
+  listaClasesLocales = await respuesta.json(); 
+  
   const contenedor = document.getElementById("contenedorTarjetas");
   contenedor.innerHTML = "";
 
-  clases.forEach((clase) => {
-
-    const imagenUrl = `assets/img/${clase.nombre.toLowerCase()}.png`;
-
+  listaClasesLocales.forEach((clase, index) => {
     contenedor.innerHTML += `
         <div class="col">
-            <div class="card h-100 card-dnd">
-                <!-- 2. La etiqueta img ahora usará tu ruta local -->
-                <img src="${imagenUrl}" class="card-img-top bg-light" alt="${clase.nombre}" style="height: 200px; object-fit: contain;">
+            <div class="card h-100 card-dnd" style="cursor: pointer;" 
+                 data-bs-toggle="modal" 
+                 data-bs-target="#modalClase" 
+                 onclick="mostrarDetallesByIndex(${index})">
                 <div class="card-body">
                     <h5 class="card-title text-primary">${clase.nombre}</h5>
                     <span class="badge bg-secondary mb-2">${clase.fuentePoder.nombre}</span>
                     <p class="card-text text-muted">${clase.descripcion}</p>
                 </div>
                 <div class="card-footer bg-transparent border-0 pb-3">
-                    <button class="btn btn-outline-danger btn-sm" onclick="prepararBorrado('${clase.nombre}')">Eliminar</button>
+                    <button class="btn btn-sm btn-primary btn-sm" onclick="event.stopPropagation(); prepararBorrado('${clase.nombre}')">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -45,16 +44,29 @@ async function datosClases() {
   });
 }
 
+function mostrarDetallesByIndex(index) {
+  const clase = listaClasesLocales[index];
+
+  document.getElementById("modalNombre").textContent = clase.nombre;
+  document.getElementById("modalFuente").textContent = clase.fuentePoder.nombre;
+  document.getElementById("modalDescripcion").textContent = clase.descripcion;
+  
+  const extendidaContenedor = document.getElementById("modalDescripcionExtendida");
+  extendidaContenedor.textContent = clase.descripcionExtendida || "No hay información adicional disponible para esta clase.";
+}
+
 async function insertarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
+  const descripcionExtendida = document.getElementById("descripcionExtendida").value; 
   const fuentePoderId = document.getElementById("fuentePoderId").value;
 
-  if(!fuentePoderId) return alert("Debes seleccionar una fuente de poder")
+  if(!fuentePoderId) return alert("Debes seleccionar una fuente de poder");
 
   const nuevaClase = {
     nombre,
     descripcion,
+    descripcionExtendida,
     fuentePoder: { id: parseInt(fuentePoderId) }
   };
 
@@ -63,6 +75,11 @@ async function insertarClase() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(nuevaClase),
   });
+
+  document.getElementById("nombre").value = "";
+  document.getElementById("descripcion").value = "";
+  document.getElementById("descripcionExtendida").value = ""; 
+  document.getElementById("fuentePoderId").value = "";
   datosClases();
 }
 
@@ -82,8 +99,9 @@ function prepararBorrado(nombre) {
 async function actualizarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
+  const descripcionExtendida = document.getElementById("descripcionExtendida").value; 
 
-  const datosParciales = { nombre, descripcion };
+  const datosParciales = { nombre, descripcion, descripcionExtendida };
 
   await fetch(`${API_URL}/${nombre}`, {
     method: "PUT",
