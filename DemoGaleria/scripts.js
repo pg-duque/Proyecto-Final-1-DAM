@@ -32,7 +32,7 @@ async function datosClases() {
                  onclick="mostrarDetallesByIndex(${index})">
                 <div class="card-body">
                     <h5 class="card-title text-primary">${clase.nombre}</h5>
-                    <span class="badge bg-secondary mb-2">${clase.fuentePoder.nombre}</span>
+                    <span class="badge badge-dnd-${clase.fuentePoder.nombre.toLowerCase()} mb-2 me-2">${clase.fuentePoder.nombre}</span
                     <p class="card-text text-muted">${clase.descripcion}</p>
                 </div>
                 <div class="card-footer bg-transparent border-0 pb-3">

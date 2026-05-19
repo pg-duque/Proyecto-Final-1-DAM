@@ -58,7 +58,6 @@ header, .container-formulario {
 .btn-primary { background-color: #780000; border-color: #5e0000; }
 .btn-primary:hover { background-color: #a00000; }
 
-
 .form-label {
     font-size: 1.4rem;
     color: #fdf0d5;
@@ -73,14 +72,12 @@ header, .container-formulario {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
-
 .modal-header {
     background-color: var(--color-primario);
     border-bottom: 2px solid #5e0000;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
-
 
 .modal-title {
     font-family: 'PirataOne-Regular', serif;
@@ -89,11 +86,9 @@ header, .container-formulario {
     text-shadow: var(--sombra-texto);
 }
 
-
 .modal-header .btn-close {
     filter: invert(1) grayscale(1) brightness(2);
 }
-
 
 .modal-body h6 {
     font-family: 'PirataOne-Regular', serif;
@@ -104,7 +99,6 @@ header, .container-formulario {
     padding-bottom: 3px;
 }
 
-
 #modalDescripcionExtendida {
     background-color: #f4e3be !important; 
     border: 1px solid #d4b883 !important;
@@ -113,14 +107,12 @@ header, .container-formulario {
     line-height: 1.5;
 }
 
-
 .modal-footer {
     border-top: 1px solid rgba(120, 0, 0, 0.15);
     background-color: rgba(0, 0, 0, 0.02);
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
-
 
 .modal-footer .btn-secondary {
     background-color: #5e0000;
@@ -132,3 +124,31 @@ header, .container-formulario {
 .modal-footer .btn-secondary:hover {
     background-color: #780000;
 }
+
+.badge[class*="badge-dnd-"] {
+    font-size: 0.85rem;
+    padding: 5px 5px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.badge-dnd-marcial {
+    background-color: #5c677d !important; 
+    color: #ffffff;
+}
+
+.badge-dnd-arcana {
+    background-color: #6f42c1 !important; 
+    color: #ffffff;
+}
+
+.badge-dnd-divina {
+    background-color: #d4af37 !important; 
+    color: #1a1a1a !important; 
+}
+
+.badge-dnd-primordial {
+    background-color: #2a9757 !important; 
+    color: #ffffff;
+}
+
