@@ -24,25 +24,34 @@ async function datosClases() {
   contenedor.innerHTML = "";
 
   listaClasesLocales.forEach((clase, index) => {
+
+    const imagenSrc = clase.imagenUrl || 'https://placehold.co';
+
     contenedor.innerHTML += `
         <div class="col">
             <div class="card h-100 card-dnd" style="cursor: pointer;" 
                  data-bs-toggle="modal" 
                  data-bs-target="#modalClase" 
                  onclick="mostrarDetallesByIndex(${index})">
+                 
+                 <img src="${imagenSrc}" class="card-img-top" alt="${clase.nombre}">
+                 
                 <div class="card-body">
                     <h5 class="card-title text-primary">${clase.nombre}</h5>
-                    <span class="badge badge-dnd-${clase.fuentePoder.nombre.toLowerCase()} mb-2 me-2">${clase.fuentePoder.nombre}</span
+                    
+                    <span class="badge badge-dnd-${clase.fuentePoder.nombre.toLowerCase()} mb-2 me-2">${clase.fuentePoder.nombre}</span>
+                    
                     <p class="card-text text-muted">${clase.descripcion}</p>
                 </div>
                 <div class="card-footer bg-transparent border-0 pb-3">
-                    <button class="btn btn-sm btn-primary btn-sm" onclick="event.stopPropagation(); prepararBorrado('${clase.nombre}')">Eliminar</button>
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); prepararBorrado('${clase.nombre}')">Eliminar</button>
                 </div>
             </div>
         </div>
     `;
   });
 }
+
 
 function mostrarDetallesByIndex(index) {
   const clase = listaClasesLocales[index];
@@ -58,7 +67,8 @@ function mostrarDetallesByIndex(index) {
 async function insertarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
-  const descripcionExtendida = document.getElementById("descripcionExtendida").value; 
+  const descripcionExtendida = document.getElementById("descripcionExtendida").value;
+  const imagenUrl = document.getElementById("imagenUrl").value; 
   const fuentePoderId = document.getElementById("fuentePoderId").value;
 
   if(!fuentePoderId) return alert("Debes seleccionar una fuente de poder");
@@ -67,6 +77,7 @@ async function insertarClase() {
     nombre,
     descripcion,
     descripcionExtendida,
+    imagenUrl,
     fuentePoder: { id: parseInt(fuentePoderId) }
   };
 
@@ -79,6 +90,7 @@ async function insertarClase() {
   document.getElementById("nombre").value = "";
   document.getElementById("descripcion").value = "";
   document.getElementById("descripcionExtendida").value = ""; 
+  document.getElementById("imagenUrl").value = "";
   document.getElementById("fuentePoderId").value = "";
   datosClases();
 }
@@ -99,9 +111,10 @@ function prepararBorrado(nombre) {
 async function actualizarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
+  const imagenUrl = document.getElementById("imagenUrl").value;
   const descripcionExtendida = document.getElementById("descripcionExtendida").value; 
 
-  const datosParciales = { nombre, descripcion, descripcionExtendida };
+  const datosParciales = { nombre, descripcion, descripcionExtendida, imagenUrl };
 
   await fetch(`${API_URL}/${nombre}`, {
     method: "PUT",

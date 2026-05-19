@@ -43,10 +43,10 @@ header, .container-formulario {
 }
 
 .card-dnd img {
-    height: 200px;
-    object-fit: contain; 
-    background-color: rgba(0,0,0,0.05);
-    padding: 10px;
+    height: 180px;
+    object-fit: cover; 
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
 
 .card-title {
