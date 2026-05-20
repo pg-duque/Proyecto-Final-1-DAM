@@ -166,6 +166,14 @@ function cargarDatosEnFormulario(index) {
   }
 }
 
+function limpiarFormulario() {
+  document.getElementById("nombre").value = "";
+  document.getElementById("descripcion").value = "";
+  document.getElementById("descripcionExtendida").value = "";
+  document.getElementById("imagenUrl").value = "";
+  document.getElementById("fuentePoderId").value = "";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   datosClases();
   cargarFuentes();
