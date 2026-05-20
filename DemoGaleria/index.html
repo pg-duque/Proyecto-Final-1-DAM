@@ -11,32 +11,43 @@
 
 <body>
 
-    <section class="container my-4">
-        <div class="row g-3 mb-3">
+        <section class="container my-4">
+        <div class="row g-4 mb-3">
             <div class="col-md-6">
-                <label class="form-label">Clase</label>
+                <!-- Envoltura para la franja independiente -->
+                <div class="franja-titulo">
+                    <label class="form-label">Clase</label>
+                </div>
                 <input type="text" id="nombre" class="form-control" placeholder="Ej: Guerrero">
             </div>
     
             <div class="col-md-6">
-                <label class="form-label">Descripción</label>
+                <div class="franja-titulo">
+                    <label class="form-label">Descripción</label>
+                </div>
                 <input type="text" id="descripcion" class="form-control" placeholder="Ej: Maestro del combate físico...">
             </div>
 
             <div class="col-12">
-                <label for="descripcionExtendida" class="form-label">Descripción Extendida</label>
+                <div class="franja-titulo">
+                    <label for="descripcionExtendida" class="form-label">Descripción Extendida</label>
+                </div>
                 <textarea class="form-control" id="descripcionExtendida" rows="3" placeholder="Detalles avanzados de la clase..."></textarea>
             </div>
 
             <div class="col-md-6">
-                <label class="form-label">Fuente de Poder</label>
+                <div class="franja-titulo">
+                    <label class="form-label">Fuente de Poder</label>
+                </div>
                 <select id="fuentePoderId" class="form-select">
                     <option value="">Selecciona una fuente...</option>
                 </select>
             </div>
 
             <div class="col-md-6">
-                <label class="form-label">Nombre del Archivo de Imagen</label>
+                <div class="franja-titulo">
+                    <label class="form-label">Nombre del Archivo de Imagen</label>
+                </div>
                 <input type="text" id="imagenUrl" class="form-control" placeholder="Ej: picaro.png, mago.jpg o barbaro.webp">
             </div>
         </div>
@@ -48,6 +59,7 @@
             <button class="btn btn-danger" onclick="borrarClase()">Borrar</button>
         </div>
     </section>
+
 
     <main class="container mb-5">
         <div id="contenedorTarjetas" class="row row-cols-1 row-cols-md-3 g-4"></div>

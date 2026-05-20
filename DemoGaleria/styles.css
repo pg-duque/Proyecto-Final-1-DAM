@@ -28,6 +28,21 @@ header, .container-formulario {
     margin-bottom: 30px;
 }
 
+.franja-titulo {
+    font-family: 'PirataOne-Regular', serif;
+    background-color: var(--color-primario); 
+    border-radius: 6px;
+    padding: 4px 12px;
+    display: inline-block;         
+}
+
+.franja-titulo .form-label {
+    margin-bottom: 0;               
+    font-size: 1.5rem;
+    color: var(--color-textos);
+    text-shadow: var(--sombra-texto);
+}
+
 .card-dnd {
     background-color: #fdf0d5; 
     color: #333;
@@ -43,8 +58,10 @@ header, .container-formulario {
 }
 
 .card-dnd img {
-    height: 180px;
-    object-fit: cover; 
+    width: 100%;            
+    height: 320px;          
+    object-fit: cover;      
+    object-position: top;  
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
@@ -150,5 +167,23 @@ header, .container-formulario {
 .badge-dnd-primordial {
     background-color: #2a9757 !important; 
     color: #ffffff;
+}
+
+
+section .form-control, section .form-select {
+    background-color: #fdf0d5;     
+    border: 1px solid #d4b883;
+    color: #333;
+}
+
+section .form-control::placeholder {
+    color: #777;                    
+
+}
+
+@media (min-width: 768px) {
+    .card-dnd img {
+        height: 220px;      
+    }
 }
 
