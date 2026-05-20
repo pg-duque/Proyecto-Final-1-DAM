@@ -45,10 +45,11 @@ async function datosClases() {
 
     contenedor.innerHTML += `
         <div class="col">
+            <!-- MODIFICADO: Ahora ejecuta mostrarDetallesByIndex y cargarDatosEnFormulario -->
             <div class="card h-100 card-dnd" style="cursor: pointer;" 
                  data-bs-toggle="modal" 
                  data-bs-target="#modalClase" 
-                 onclick="mostrarDetallesByIndex(${index})">
+                 onclick="mostrarDetallesByIndex(${index}); cargarDatosEnFormulario(${index})">
                  
                  <img src="${imagenSrc}" class="card-img-top" alt="${clase.nombre}">
                  
@@ -60,6 +61,7 @@ async function datosClases() {
                     <p class="card-text text-muted">${clase.descripcion}</p>
                 </div>
                 <div class="card-footer bg-transparent border-0 pb-3">
+                    <!-- MODIFICADO: event.stopPropagation evita que se abra el modal al borrar -->
                     <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); prepararBorrado('${clase.nombre}')">Eliminar</button>
                 </div>
             </div>
@@ -149,6 +151,19 @@ function cargarSelectorImagenes() {
     option.textContent = nombreArchivo; 
     selectImagen.appendChild(option);
   });
+}
+
+function cargarDatosEnFormulario(index) {
+  const clase = listaClasesLocales[index];
+
+  document.getElementById("nombre").value = clase.nombre;
+  document.getElementById("descripcion").value = clase.descripcion;
+  document.getElementById("descripcionExtendida").value = clase.descripcionExtendida || "";
+  document.getElementById("imagenUrl").value = clase.imagenUrl || "";
+
+  if (clase.fuentePoder && clase.fuentePoder.id) {
+    document.getElementById("fuentePoderId").value = clase.fuentePoder.id;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
