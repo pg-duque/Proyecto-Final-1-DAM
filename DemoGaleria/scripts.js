@@ -1,6 +1,8 @@
 const API_URL = "http://localhost:8080/clases";
 const API_FUENTES = "http://localhost:8080/fuentes";
 
+const RUTA_IMAGENES_LOCAL = "assets/img/"; 
+
 let listaClasesLocales = []; 
 
 async function cargarFuentes() {
@@ -25,7 +27,8 @@ async function datosClases() {
 
   listaClasesLocales.forEach((clase, index) => {
 
-    const imagenSrc = clase.imagenUrl || 'https://placehold.co';
+    // Construye la ruta local. Si no hay archivo, usa un marcador por defecto
+    const imagenSrc = clase.imagenUrl ? `${RUTA_IMAGENES_LOCAL}${clase.imagenUrl}` : 'img/default.png';
 
     contenedor.innerHTML += `
         <div class="col">
@@ -52,7 +55,6 @@ async function datosClases() {
   });
 }
 
-
 function mostrarDetallesByIndex(index) {
   const clase = listaClasesLocales[index];
 
@@ -68,6 +70,7 @@ async function insertarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
   const descripcionExtendida = document.getElementById("descripcionExtendida").value;
+  // Ahora el usuario escribirá solo el nombre del archivo (ej: 'mago.jpg')
   const imagenUrl = document.getElementById("imagenUrl").value; 
   const fuentePoderId = document.getElementById("fuentePoderId").value;
 
@@ -77,7 +80,7 @@ async function insertarClase() {
     nombre,
     descripcion,
     descripcionExtendida,
-    imagenUrl,
+    imagenUrl, // Se guarda el nombre del archivo en la base de datos
     fuentePoder: { id: parseInt(fuentePoderId) }
   };
 
@@ -111,7 +114,7 @@ function prepararBorrado(nombre) {
 async function actualizarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
-  const imagenUrl = document.getElementById("imagenUrl").value;
+  const imagenUrl = document.getElementById("imagenUrl").value; // Nombre del nuevo archivo
   const descripcionExtendida = document.getElementById("descripcionExtendida").value; 
 
   const datosParciales = { nombre, descripcion, descripcionExtendida, imagenUrl };
