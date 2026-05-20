@@ -1,7 +1,21 @@
 const API_URL = "http://localhost:8080/clases";
 const API_FUENTES = "http://localhost:8080/fuentes";
 
-const RUTA_IMAGENES_LOCAL = "assets/img/"; 
+const RUTA_IMAGENES_LOCAL = "assets/img/";
+const IMAGENES_DISPONIBLES = [
+  "barbaro.webp",
+  "bardo.png",
+  "brujo.webp",
+  "clerigo.webp",
+  "druida.png",
+  "explorador.png",
+  "guerrero..webp",
+  "hechicero.png",
+  "mago.jpg",
+  "paladin.webp",
+  "picaro.png",
+  "senor.jpg"
+]; 
 
 let listaClasesLocales = []; 
 
@@ -27,8 +41,7 @@ async function datosClases() {
 
   listaClasesLocales.forEach((clase, index) => {
 
-    // Construye la ruta local. Si no hay archivo, usa un marcador por defecto
-    const imagenSrc = clase.imagenUrl ? `${RUTA_IMAGENES_LOCAL}${clase.imagenUrl}` : 'img/default.png';
+    const imagenSrc = clase.imagenUrl ? `${RUTA_IMAGENES_LOCAL}${clase.imagenUrl}` : `${RUTA_IMAGENES_LOCAL}default.jpg`;
 
     contenedor.innerHTML += `
         <div class="col">
@@ -70,7 +83,6 @@ async function insertarClase() {
   const nombre = document.getElementById("nombre").value;
   const descripcion = document.getElementById("descripcion").value;
   const descripcionExtendida = document.getElementById("descripcionExtendida").value;
-  // Ahora el usuario escribirá solo el nombre del archivo (ej: 'mago.jpg')
   const imagenUrl = document.getElementById("imagenUrl").value; 
   const fuentePoderId = document.getElementById("fuentePoderId").value;
 
@@ -80,7 +92,7 @@ async function insertarClase() {
     nombre,
     descripcion,
     descripcionExtendida,
-    imagenUrl, // Se guarda el nombre del archivo en la base de datos
+    imagenUrl, 
     fuentePoder: { id: parseInt(fuentePoderId) }
   };
 
@@ -127,7 +139,20 @@ async function actualizarClase() {
   datosClases();
 }
 
+function cargarSelectorImagenes() {
+  const selectImagen = document.getElementById("imagenUrl");
+  if (!selectImagen) return;
+
+  IMAGENES_DISPONIBLES.forEach(nombreArchivo => {
+    const option = document.createElement("option");
+    option.value = nombreArchivo;
+    option.textContent = nombreArchivo; 
+    selectImagen.appendChild(option);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   datosClases();
   cargarFuentes();
+  cargarSelectorImagenes();
 });
