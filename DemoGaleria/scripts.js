@@ -8,8 +8,8 @@ const IMAGENES_DISPONIBLES = [
   "brujo.webp",
   "clerigo.webp",
   "druida.png",
-  "explorador.png",
-  "guerrero..webp",
+  "explorador.webp",
+  "guerrero.webp",
   "hechicero.png",
   "mago.jpg",
   "paladin.webp",
@@ -145,6 +145,8 @@ function cargarSelectorImagenes() {
   const selectImagen = document.getElementById("imagenUrl");
   if (!selectImagen) return;
 
+   selectImagen.addEventListener("change", actualizarVistaPrevia);
+
   IMAGENES_DISPONIBLES.forEach(nombreArchivo => {
     const option = document.createElement("option");
     option.value = nombreArchivo;
@@ -164,6 +166,8 @@ function cargarDatosEnFormulario(index) {
   if (clase.fuentePoder && clase.fuentePoder.id) {
     document.getElementById("fuentePoderId").value = clase.fuentePoder.id;
   }
+
+  actualizarVistaPrevia(); 
 }
 
 function limpiarFormulario() {
@@ -172,6 +176,27 @@ function limpiarFormulario() {
   document.getElementById("descripcionExtendida").value = "";
   document.getElementById("imagenUrl").value = "";
   document.getElementById("fuentePoderId").value = "";
+
+  actualizarVistaPrevia();
+}
+
+function actualizarVistaPrevia() {
+  const selectImagen = document.getElementById("imagenUrl");
+  const imgPrevia = document.getElementById("vistaPreviaImg");
+  
+  if (!selectImagen || !imgPrevia) return;
+
+  const archivoSeleccionado = selectImagen.value;
+
+  if (archivoSeleccionado) {
+
+    imgPrevia.src = `${RUTA_IMAGENES_LOCAL}${archivoSeleccionado}`;
+    imgPrevia.style.display = "block";
+  } else {
+
+    imgPrevia.src = "";
+    imgPrevia.style.display = "none";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
