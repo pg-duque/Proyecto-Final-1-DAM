@@ -1,23 +1,26 @@
+/* VARIABLES GLOBALES: Para guardar colores y sombras que vamos a reutilizar */
 :root {
-    --color-textos: #fdf0d5;
-    --color-primario: rgba(120, 0, 0, 0.88);
-    --sombra-texto: 4px 4px 8px black;
+    --color-textos: #fdf0d5; /* Un tono crema claro */
+    --color-primario: rgba(120, 0, 0, 0.88); /* Un rojo oscuro transparente */
+    --sombra-texto: 4px 4px 8px black; /* Sombra negra para leer mejor las letras */
 }
 
+/* IMPORTAR FUENTE: Registramos la tipografía estilo pirata/fantasía */
 @font-face {
     font-family: 'PirataOne-Regular';
     src: url('assets/fonts/PirataOne-Regular.ttf') format('truetype');
 }
 
+/* FONDO DE LA PÁGINA: Configura la imagen de fondo para que no se mueva */
 body {
   background-image: url('assets/wallpaper/wallpaper_main.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-repeat: no-repeat; /* Evita que el fondo se repita en mosaico */
+  background-size: cover; /* Fuerza a la imagen a cubrir toda la pantalla */
+  background-position: center; /* Centra el dibujo */
+  background-attachment: fixed; /* Truco para que el fondo se quede quieto al hacer scroll */
 }
 
-
+/* CONTENEDOR PRINCIPAL: Estilo tipo pergamino oscuro para el formulario */
 header, .container-formulario {
     font-family: 'PirataOne-Regular', serif;
     background-color: var(--color-primario);
@@ -28,14 +31,16 @@ header, .container-formulario {
     margin-bottom: 30px;
 }
 
+/* CAJAS DE TÍTULO: Las franjas rojas donde van los textos como "Clase" o "Descripción" */
 .franja-titulo {
     font-family: 'PirataOne-Regular', serif;
     background-color: var(--color-primario); 
     border-radius: 6px;
     padding: 4px 12px;
-    display: inline-block;         
+    display: inline-block; /* Hace que la caja solo ocupe el ancho del texto */         
 }
 
+/* TEXTO DENTRO DE LAS FRANJAS DE TÍTULO */
 .franja-titulo .form-label {
     margin-bottom: 0;               
     font-size: 1.5rem;
@@ -43,44 +48,51 @@ header, .container-formulario {
     text-shadow: var(--sombra-texto);
 }
 
+/* TARJETAS DE PERSONAJE: El diseño por defecto de los cuadros de clase */
 .card-dnd {
     background-color: #fdf0d5; 
     color: #333;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza la animación al pasar el ratón */
     cursor: pointer;
     border: 3px solid #5e0000;
     border-radius: 10px;
 }
 
+/* ANIMACIÓN DE LAS TARJETAS: Se elevan y ganan sombra cuando pasas el cursor */
 .card-dnd:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transform: translateY(-10px); /* Sube la tarjeta 10 píxeles */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5); /* Agrega sombra profunda abajo */
 }
 
+/* IMÁGENES DE LAS TARJETAS */
 .card-dnd img {
     width: 100%;            
-    height: 320px;          
-    object-fit: cover;      
-    object-position: top;  
+    height: 320px; /* Altura fija para pantallas pequeñas */         
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformarse */     
+    object-position: top; /* Centra el recorte en la parte de arriba (para ver las caras) */  
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
 
+/* TÍTULO DEL PERSONAJE DENTRO DE LA TARJETA */
 .card-title {
     font-family: 'PirataOne-Regular', serif;
     font-size: 1.8rem;
     color: #780000 !important;
 }
 
+/* BOTONES ROJOS: Personalización de los botones principales */
 .btn-primary { background-color: #780000; border-color: #5e0000; }
-.btn-primary:hover { background-color: #a00000; }
+.btn-primary:hover { background-color: #a00000; } /* Se vuelve más claro al pasar el ratón */
 
+/* TEXTO DE LAS ETIQUETAS */
 .form-label {
     font-size: 1.4rem;
     color: #fdf0d5;
     text-shadow: var(--sombra-texto);
 }
 
+/* VENTANA EMERGENTE (MODAL): Caja general del diálogo flotante */
 .modal-content {
     background-color: #fdf0d5; 
     color: #333;
@@ -89,6 +101,7 @@ header, .container-formulario {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
+/* PARTE DE ARRIBA DEL MODAL: Franja roja superior */
 .modal-header {
     background-color: var(--color-primario);
     border-bottom: 2px solid #5e0000;
@@ -96,6 +109,7 @@ header, .container-formulario {
     border-top-right-radius: 8px;
 }
 
+/* TÍTULO DENTRO DEL MODAL */
 .modal-title {
     font-family: 'PirataOne-Regular', serif;
     font-size: 2.2rem;
@@ -103,27 +117,31 @@ header, .container-formulario {
     text-shadow: var(--sombra-texto);
 }
 
+/* BOTÓN "X" PARA CERRAR EL MODAL: Truco para cambiarlo a color blanco */
 .modal-header .btn-close {
     filter: invert(1) grayscale(1) brightness(2);
 }
 
+/* SUBTÍTULOS DEL MODAL (Resumen, Información Detallada) */
 .modal-body h6 {
     font-family: 'PirataOne-Regular', serif;
     font-size: 1.5rem;
     color: #780000;
     margin-top: 15px;
-    border-bottom: 1px solid rgba(120, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(120, 0, 0, 0.2); /* Línea divisoria fina */
     padding-bottom: 3px;
 }
 
+/* CAJA DE LA DESCRIPCIÓN LARGA DENTRO DEL MODAL */
 #modalDescripcionExtendida {
-    background-color: #f4e3be !important; 
+    background-color: #f4e3be !important; /* Tono beige suave estilo pergamino viejo */
     border: 1px solid #d4b883 !important;
     color: #2b2b2b;
     font-size: 1rem;
     line-height: 1.5;
 }
 
+/* PARTE DE ABAJO DEL MODAL: Zona del botón de cierre */
 .modal-footer {
     border-top: 1px solid rgba(120, 0, 0, 0.15);
     background-color: rgba(0, 0, 0, 0.02);
@@ -131,17 +149,18 @@ header, .container-formulario {
     border-bottom-right-radius: 12px;
 }
 
+/* BOTÓN DE CIERRE DEL MODAL */
 .modal-footer .btn-secondary {
     background-color: #5e0000;
     border-color: #3a0000;
     color: var(--color-textos);
     transition: background-color 0.2s ease;
 }
-
 .modal-footer .btn-secondary:hover {
     background-color: #780000;
 }
 
+/* ETIQUETAS (BADGES) DE LAS TARJETAS: Configuración general */
 .badge[class*="badge-dnd-"] {
     font-size: 0.85rem;
     padding: 5px 5px;
@@ -149,50 +168,38 @@ header, .container-formulario {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
 
-.badge-dnd-marcial {
-    background-color: #5c677d !important; 
-    color: #ffffff;
-}
-
-.badge-dnd-arcana {
-    background-color: #6f42c1 !important; 
-    color: #ffffff;
-}
-
-.badge-dnd-divina {
-    background-color: #d4af37 !important; 
-    color: #1a1a1a !important; 
-}
-
-.badge-dnd-primordial {
-    background-color: #2a9757 !important; 
-    color: #ffffff;
-}
+/* COLORES SEGÚN EL TIPO DE FUENTE DE PODER */
+.badge-dnd-marcial { background-color: #5c677d !important; color: #ffffff; }    /* Gris azulado */
+.badge-dnd-arcana { background-color: #6f42c1 !important; color: #ffffff; }     /* Morado */
+.badge-dnd-divina { background-color: #d4af37 !important; color: #1a1a1a !important; } /* Dorado */
+.badge-dnd-primordial { background-color: #2a9757 !important; color: #ffffff; } /* Verde */
 
 
+/* FORMULARIOS: Estilo para las cajas de texto y selectores del formulario */
 section .form-control, section .form-select {
     background-color: #fdf0d5;     
     border: 1px solid #d4b883;
     color: #333;
 }
 
+/* Color del texto de ayuda dentro de los inputs vacíos */
 section .form-control::placeholder {
     color: #777;                    
-
 }
 
+/* MINIATURA DE VISTA PREVIA: Cuadro de la imagen pequeña en el formulario */
 #vistaPreviaImg {
     height: 120px !important;       
     width: 100% !important;
-    object-fit: contain !important; 
-    background-color: #1a1a1a;     
+    object-fit: contain !important; /* Encaja la imagen completa sin recortarla */
+    background-color: #1a1a1a; /* Fondo negro por si la imagen tiene transparencias */     
     border: 2px solid #5e0000;      
     padding: 4px;
 }
 
+/* DISEÑO RESPONSIVO: Ajustes automáticos para pantallas de PC o tablets */
 @media (min-width: 768px) {
     .card-dnd img {
-        height: 220px;      
+        height: 220px; /* Reduce el alto de las imágenes en PC para que quepan mejor las tarjetas */     
     }
 }
-
