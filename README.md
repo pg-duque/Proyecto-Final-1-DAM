@@ -1,3 +1,8 @@
+## Repositorio del Backend
+
+Para que este frontend funcione y muestre los datos de las tarjetas, necesita estar conectado a su API REST. Puedes encontrar el código del servidor aquí:
+🔗 [Repositorio Backend - Spring Boot](https://github.com/pg-duque/Proyecto-Final-1-DAM---Backend/tree/master)
+
 # Frontend Galería - D&D
 
 Este proyecto es la interfaz de usuario para gestionar y visualizar las clases de personajes. Está desarrollado con tecnologías web estándar (HTML, CSS, JavaScript) y utiliza Bootstrap 5 para el diseño visual.
